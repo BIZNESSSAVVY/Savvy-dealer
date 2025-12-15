@@ -869,7 +869,7 @@
                         </button>
                     </div>
                     <p style="text-align: center; color: var(--gray); font-size: 1rem; margin-top: 25px;">
-                        We'll contact you within 24 hours to schedule your personalized demo.
+                        <strong>Sending you to book your demo now...</strong>
                     </p>
                 </form>
             </div>
@@ -944,7 +944,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript with Formspree Integration -->
+    <!-- JavaScript with Formspree Integration & CALENDLY REDIRECT -->
     <script>
         // Mobile navigation toggle
         document.getElementById('mobileToggle').addEventListener('click', function() {
@@ -958,7 +958,7 @@
             });
         });
         
-        // Formspree Form Submission
+        // Formspree Form Submission WITH CALENDLY REDIRECT
         document.getElementById('demoForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -1008,28 +1008,8 @@
                 });
                 
                 if (response.ok) {
-                    // Success
-                    formMessage.className = 'form-message success';
-                    formMessage.textContent = 'Demo request received! We will contact you within 24 hours to schedule.';
-                    formMessage.style.display = 'block';
-                    
-                    // Reset form
-                    form.reset();
-                    
-                    // Update button
-                    submitBtn.textContent = 'Request Sent!';
-                    
-                    // Reset button after 3 seconds
-                    setTimeout(() => {
-                        submitBtn.textContent = originalText;
-                        submitBtn.disabled = false;
-                        submitBtn.classList.remove('form-submitting');
-                    }, 3000);
-                    
-                    // Hide success message after 5 seconds
-                    setTimeout(() => {
-                        formMessage.style.display = 'none';
-                    }, 5000);
+                    // SUCCESS: Redirect to Calendly IMMEDIATELY
+                    window.location.href = 'https://calendly.com/savvyordersystems/dealership-demo';
                     
                 } else {
                     // Formspree error
@@ -1037,7 +1017,7 @@
                 }
                 
             } catch (error) {
-                // Network or other error
+                // Network or other error - DON'T redirect, show error
                 formMessage.className = 'form-message error';
                 formMessage.textContent = 'There was an error submitting your request. Please try again or contact us directly.';
                 formMessage.style.display = 'block';

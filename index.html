@@ -5,17 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Savvy Dealer System | AI-Powered Lead-to-Sale Automation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #FF6B35; /* Orange */
-            --secondary: #003B5C; /* Navy */
+            --primary: #FF6B35;
+            --primary-light: #FF9D77;
+            --primary-dark: #E55A2B;
+            --secondary: #003B5C;
+            --secondary-light: #005380;
             --light: #FFFFFF;
-            --dark: #1A1A1A;
+            --dark: #0F1A2A;
             --gray: #6C757D;
-            --light-gray: #F8F9FA;
-            --border-radius: 8px;
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            --transition: all 0.3s ease;
+            --light-gray: #F8FAFC;
+            --border-radius: 12px;
+            --border-radius-lg: 20px;
+            --shadow: 0 8px 30px rgba(0, 59, 92, 0.08);
+            --shadow-lg: 0 20px 60px rgba(0, 59, 92, 0.12);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -25,66 +33,119 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
             color: var(--dark);
             background-color: var(--light);
+            overflow-x: hidden;
         }
 
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
-        /* Header & Navigation */
+        /* Premium Header */
         header {
-            background-color: var(--light);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            position: sticky;
+            position: fixed;
             top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
             z-index: 1000;
+            border-bottom: 1px solid rgba(0, 59, 92, 0.08);
+            padding: 16px 0;
         }
 
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
+            gap: 12px;
+            font-size: 2.2rem;
+            font-weight: 800;
             color: var(--secondary);
+            text-decoration: none;
         }
 
         .logo span {
             color: var(--primary);
+            position: relative;
+        }
+
+        .logo span::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
         }
 
         .logo i {
-            font-size: 2rem;
+            font-size: 2.4rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 40px;
         }
 
         .nav-links a {
             text-decoration: none;
             color: var(--secondary);
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 8px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
             transition: var(--transition);
         }
 
         .nav-links a:hover {
             color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            padding: 14px 32px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4);
         }
 
         .mobile-toggle {
@@ -94,18 +155,19 @@
             color: var(--secondary);
         }
 
-        /* Modern Hero Section with Background Image */
+        /* Premium Hero Section */
         .hero {
-            background: linear-gradient(rgba(0, 59, 92, 0.85), rgba(0, 59, 92, 0.9)), 
-                        url('https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            min-height: 100vh;
+            background: linear-gradient(rgba(0, 59, 92, 0.88), rgba(0, 59, 92, 0.92)), 
+                        url('https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            color: var(--light);
-            padding: 120px 0;
-            text-align: center;
+            display: flex;
+            align-items: center;
             position: relative;
             overflow: hidden;
+            color: var(--light);
         }
 
         .hero::before {
@@ -115,274 +177,463 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, var(--primary), #FF9D77);
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to top, var(--light), transparent);
+            pointer-events: none;
         }
 
         .hero-content {
-            max-width: 900px;
-            margin: 0 auto;
             position: relative;
             z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .automated-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            color: var(--primary-light);
+            border: 1px solid rgba(255, 157, 119, 0.3);
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .pulse-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: pulse 1.5s ease-in-out infinite;
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.7; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.7; }
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 25px;
+            font-size: 4.5rem;
+            margin-bottom: 30px;
             line-height: 1.1;
             font-weight: 800;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            letter-spacing: -0.5px;
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 25px;
-            opacity: 0.95;
-            max-width: 750px;
-            margin-left: auto;
-            margin-right: auto;
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary-light), #FFD166);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .hero .highlight {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: var(--border-radius);
-            padding: 25px;
-            margin: 35px 0;
-            border-left: 4px solid var(--primary);
+        .value-proposition {
+            margin: 50px auto;
+            max-width: 800px;
         }
 
-        .btn {
-            display: inline-block;
-            padding: 18px 45px;
-            background-color: var(--primary);
-            color: white;
-            text-decoration: none;
-            border-radius: var(--border-radius);
+        .value-proposition p {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            opacity: 0.9;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .typing-container {
+            font-size: 2.8rem;
             font-weight: 700;
-            font-size: 1.2rem;
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3);
-            letter-spacing: 0.5px;
+            color: var(--light);
+            min-height: 4rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 15px;
         }
 
-        .btn:hover {
-            background-color: #e55a2b;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4);
+        #typing-text {
+            background: linear-gradient(135deg, var(--primary-light), #FFD166);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding-right: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 4px solid var(--primary-light);
+            text-shadow: 0 2px 10px rgba(255, 157, 119, 0.3);
+        }
+
+        .typing-cursor {
+            opacity: 0;
+        }
+
+        .hero-btn-container {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 22px 48px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.6);
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
         }
 
         .btn-secondary {
-            background-color: transparent;
-            border: 2px solid var(--light);
-            color: var(--light);
-            box-shadow: none;
-            margin-left: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 22px 48px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: var(--border-radius);
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
         }
 
         .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-4px);
         }
 
         /* Sections */
         section {
-            padding: 100px 0;
+            padding: 120px 0;
+            position: relative;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 70px;
+            margin-bottom: 80px;
         }
 
         .section-title h2 {
-            font-size: 2.8rem;
+            font-size: 3.2rem;
             color: var(--secondary);
             margin-bottom: 20px;
-            font-weight: 700;
+            font-weight: 800;
+            letter-spacing: -0.5px;
         }
 
         .section-title p {
             color: var(--gray);
             max-width: 700px;
             margin: 0 auto;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            font-weight: 300;
         }
 
         /* Problem Section */
         .problem {
-            background-color: var(--light-gray);
-        }
-
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .problem-card {
-            background-color: white;
-            padding: 40px 30px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            border-top: 4px solid var(--primary);
-            transition: var(--transition);
-            height: 100%;
-        }
-
-        .problem-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .problem-card h3 {
-            color: var(--secondary);
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        .problem-card i {
-            color: var(--primary);
-            font-size: 2.5rem;
-            margin-bottom: 25px;
-        }
-
-        /* How It Works */
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
+            background: var(--light-gray);
             position: relative;
         }
 
-        .steps::before {
-            content: '';
-            position: absolute;
-            top: 40px;
-            left: 5%;
-            right: 5%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), transparent);
-            z-index: 1;
-        }
-
-        .step {
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .step-number {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--primary), #FF9D77);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 700;
-            margin: 0 auto 30px;
-            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
-        }
-
-        .step h3 {
-            color: var(--secondary);
-            margin-bottom: 20px;
-            font-size: 1.6rem;
-            font-weight: 600;
-        }
-
-        .step-icon {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 25px;
-            opacity: 0.9;
-        }
-
-        /* Why Choose */
-        .benefits {
-            background-color: var(--light-gray);
-        }
-
-        .benefit-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
-        }
-
-        .benefit-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 25px;
-            background: white;
-            padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .benefit-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .benefit-icon {
-            background: linear-gradient(135deg, var(--primary), #FF9D77);
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            font-size: 1.5rem;
-        }
-
-        /* Demo Section */
-        .demo {
-            background: linear-gradient(135deg, var(--secondary) 0%, #00263a 100%);
-            color: white;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .demo::before {
+        .problem::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, var(--primary), #FF9D77);
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
         }
 
-        .demo h2 {
-            color: white;
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 50px 40px;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 59, 92, 0.1);
+        }
+
+        .problem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--primary-light));
+        }
+
+        .problem-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .problem-card i {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+        }
+
+        .problem-card h3 {
+            color: var(--secondary);
             margin-bottom: 20px;
+            font-size: 1.6rem;
+            font-weight: 700;
         }
 
-        .demo p {
-            max-width: 700px;
+        /* How It Works - Premium Design */
+        .how-it-works {
+            background: white;
+        }
+
+        .steps-container {
+            position: relative;
+            margin-top: 80px;
+        }
+
+        .steps-line {
+            position: absolute;
+            top: 120px;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            z-index: 1;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            font-weight: 800;
             margin: 0 auto 40px;
-            font-size: 1.2rem;
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .step-number:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 20px 50px rgba(255, 107, 53, 0.6);
+        }
+
+        .step-icon {
+            font-size: 4rem;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             opacity: 0.9;
         }
 
-        /* Form */
-        .form-container {
-            max-width: 650px;
+        .step h3 {
+            color: var(--secondary);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .step p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            padding: 0 15px;
+        }
+
+        /* Why Choose */
+        .benefits {
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefits::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+        }
+
+        .benefits .section-title h2 {
+            color: white;
+        }
+
+        .benefits .section-title p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .benefit-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .benefit-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 50px 40px;
+            border-radius: var(--border-radius-lg);
+            transition: var(--transition);
+        }
+
+        .benefit-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+
+        .benefit-item h3 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        /* Demo Section */
+        .demo {
+            background: white;
+            position: relative;
+        }
+
+        .demo .container {
+            max-width: 800px;
+        }
+
+        .demo-card {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            border: 1px solid rgba(0, 59, 92, 0.1);
+        }
+
+        .demo-header {
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .demo-header h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .demo-header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 600px;
             margin: 0 auto;
-            background-color: white;
-            padding: 50px;
-            border-radius: var(--border-radius);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .demo-form {
+            padding: 60px 40px;
         }
 
         .form-group {
@@ -399,7 +650,7 @@
 
         .form-control {
             width: 100%;
-            padding: 18px;
+            padding: 20px;
             border: 2px solid #e1e5e9;
             border-radius: var(--border-radius);
             font-size: 1.1rem;
@@ -413,31 +664,119 @@
             box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
         }
 
-        /* Form Success & Error Messages */
-        .form-message {
-            padding: 15px;
+        .form-submit {
+            width: 100%;
+            padding: 22px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border: none;
             border-radius: var(--border-radius);
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4);
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(255, 107, 53, 0.6);
+        }
+
+        /* Pricing */
+        .pricing {
+            background: var(--light-gray);
+            position: relative;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-lg);
+            padding: 70px 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 59, 92, 0.1);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: 30px;
+            right: -60px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 12px 80px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transform: rotate(45deg);
+            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        .pricing-header h3 {
+            font-size: 2.5rem;
+            color: var(--secondary);
             margin-bottom: 20px;
-            display: none;
+            font-weight: 800;
         }
 
-        .form-message.success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-            display: block;
+        .pricing-header p {
+            color: var(--gray);
+            font-size: 1.3rem;
+            margin-bottom: 50px;
         }
 
-        .form-message.error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-            display: block;
+        .pricing-numbers {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            margin: 60px 0;
+            flex-wrap: wrap;
         }
 
-        .form-submitting {
-            opacity: 0.7;
-            cursor: not-allowed;
+        .pricing-item {
+            text-align: center;
+        }
+
+        .price {
+            font-size: 4.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 15px;
+        }
+
+        .price-label {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .price-note {
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        .pricing-highlight {
+            background: rgba(255, 107, 53, 0.08);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            margin: 50px 0;
+        }
+
+        .pricing-highlight p {
+            font-size: 1.4rem;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        .pricing-highlight .savings {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-top: 15px;
         }
 
         /* Sticky CTA */
@@ -446,27 +785,42 @@
             bottom: 30px;
             right: 30px;
             z-index: 999;
-            display: none;
-            animation: pulse 2s infinite;
+            opacity: 0;
+            transform: translateY(100px);
+            transition: var(--transition);
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        .sticky-cta.show {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .sticky-cta .btn {
-            padding: 15px 30px;
-            font-size: 1rem;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            padding: 18px 36px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 10px 40px rgba(255, 107, 53, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .sticky-cta .btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 50px rgba(255, 107, 53, 0.6);
         }
 
         /* Footer */
         footer {
-            background-color: var(--secondary);
+            background: var(--secondary);
             color: white;
-            padding: 80px 0 40px;
+            padding: 100px 0 40px;
             position: relative;
         }
 
@@ -477,21 +831,33 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, var(--primary), #FF9D77);
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 50px;
-            margin-bottom: 50px;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
         }
 
-        .footer-column h3 {
-            color: white;
+        .footer-brand h3 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            font-weight: 800;
+        }
+
+        .footer-brand p {
+            opacity: 0.8;
+            font-size: 1.1rem;
+            line-height: 1.7;
             margin-bottom: 30px;
-            font-size: 1.4rem;
-            font-weight: 600;
+        }
+
+        .footer-column h4 {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            font-weight: 700;
         }
 
         .footer-links a {
@@ -501,13 +867,13 @@
             margin-bottom: 15px;
             transition: var(--transition);
             padding: 8px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid transparent;
         }
 
         .footer-links a:hover {
-            color: var(--primary);
+            color: var(--primary-light);
+            border-bottom-color: var(--primary-light);
             padding-left: 10px;
-            border-bottom-color: var(--primary);
         }
 
         .copyright {
@@ -519,41 +885,29 @@
         }
 
         /* Responsive */
-        @media (max-width: 992px) {
+        @media (max-width: 1024px) {
             .hero h1 {
-                font-size: 2.8rem;
+                font-size: 3.8rem;
             }
             
-            .section-title h2 {
-                font-size: 2.3rem;
+            .typing-container {
+                font-size: 2.4rem;
+                min-height: 3.5rem;
             }
             
-            .steps::before {
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 60px;
+            }
+            
+            .steps-line {
                 display: none;
-            }
-            
-            .btn-secondary {
-                margin-left: 0;
-                margin-top: 20px;
-                display: block;
             }
         }
 
         @media (max-width: 768px) {
-            .nav-links {
+            .nav-links, .nav-cta {
                 display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: white;
-                flex-direction: column;
-                padding: 25px;
-                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            }
-            
-            .nav-links.active {
-                display: flex;
             }
             
             .mobile-toggle {
@@ -562,52 +916,55 @@
             
             .hero {
                 padding: 100px 0;
-                background-attachment: scroll;
+                min-height: auto;
             }
             
             .hero h1 {
-                font-size: 2.4rem;
+                font-size: 3rem;
             }
             
-            .hero p {
-                font-size: 1.1rem;
+            .typing-container {
+                font-size: 2rem;
+                min-height: 3rem;
+            }
+            
+            .hero-btn-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                justify-content: center;
             }
             
             section {
                 padding: 80px 0;
             }
             
-            .form-container {
-                padding: 35px 25px;
+            .section-title h2 {
+                font-size: 2.5rem;
             }
             
-            .sticky-cta {
-                bottom: 20px;
-                right: 20px;
-                display: block;
+            .steps {
+                grid-template-columns: 1fr;
+                gap: 60px;
             }
             
-            .hero .highlight {
-                padding: 20px;
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
         }
 
         @media (max-width: 480px) {
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             
-            .btn {
-                padding: 16px 30px;
-                font-size: 1.1rem;
-                width: 100%;
-                margin-bottom: 10px;
-            }
-            
-            .hero .btn-container {
-                display: flex;
-                flex-direction: column;
-                gap: 15px;
+            .typing-container {
+                font-size: 1.7rem;
+                min-height: 2.5rem;
             }
             
             .section-title h2 {
@@ -615,49 +972,78 @@
             }
             
             .step-number {
-                width: 60px;
-                height: 60px;
-                font-size: 1.7rem;
+                width: 80px;
+                height: 80px;
+                font-size: 2.2rem;
+            }
+            
+            .pricing-numbers {
+                gap: 40px;
+            }
+            
+            .price {
+                font-size: 3.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Premium Header -->
     <header>
         <div class="container">
             <nav class="navbar">
-                <div class="logo">
-                    <i class="fas fa-car"></i>
+                <a href="#" class="logo">
+                    <i class="fas fa-bolt"></i>
                     <span>Savvy</span>Dealer
-                </div>
-                <div class="mobile-toggle" id="mobileToggle">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <div class="nav-links" id="navLinks">
+                </a>
+                
+                <div class="nav-links">
                     <a href="#problem">The Problem</a>
                     <a href="#solution">The Solution</a>
                     <a href="#how-it-works">How It Works</a>
+                    <a href="#pricing">Pricing</a>
                     <a href="#demo">Live Demo</a>
+                </div>
+                
+                <a href="#demo" class="nav-cta">
+                    <i class="fas fa-play-circle"></i> See It Live
+                </a>
+                
+                <div class="mobile-toggle" id="mobileToggle">
+                    <i class="fas fa-bars"></i>
                 </div>
             </nav>
         </div>
     </header>
 
-    <!-- Modern Hero Section with Background Image -->
+    <!-- Premium Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Sell Cars Faster. Miss Fewer Leads. Control Your Reputation.</h1>
-                <p>Savvy Dealer System installs and operates an AI‑powered lead‑to‑sale system that replaces fragmented dealership workflows with one simple, automated process.</p>
-                
-                <div class="highlight">
-                    <p><strong>We don't sell software. We implement and manage the system that captures leads, follows up instantly, tracks every interaction, and turns more inquiries into sold vehicles.</strong></p>
+                <!-- Automated Badge -->
+                <div class="automated-badge">
+                    <span class="pulse-dot"></span>
+                    AI-POWERED AUTOMATION
                 </div>
-                
-                <div class="btn-container">
-                    <a href="#demo" class="btn">Book a Live Demo</a>
-                    <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
+
+                <h1>Stop Losing Sales.<br>Start <span>Closing Deals.</span></h1>
+
+                <!-- The Core Savvy Value Proposition -->
+                <div class="value-proposition">
+                    <p>We don't sell software. We implement and manage the system that</p>
+                    <div class="typing-container">
+                        <span id="typing-text"></span>
+                        <span class="typing-cursor">|</span>
+                    </div>
+                </div>
+
+                <div class="hero-btn-container">
+                    <a href="#demo" class="btn-primary">
+                        <i class="fas fa-play-circle"></i> Book Instant Demo
+                    </a>
+                    <a href="#how-it-works" class="btn-secondary">
+                        <i class="fas fa-chevron-right"></i> See How It Works
+                    </a>
                 </div>
             </div>
         </div>
@@ -667,33 +1053,30 @@
     <section id="problem" class="problem">
         <div class="container">
             <div class="section-title">
-                <h2>The Problem</h2>
-                <p>Independent dealerships lose sales every day — not because of inventory, but because of process breakdowns</p>
+                <h2>Why Dealers Lose Sales Every Day</h2>
+                <p>The problem isn't your inventory. It's your process. These are the breakdowns costing you thousands.</p>
             </div>
             <div class="problem-grid">
                 <div class="problem-card">
                     <i class="fas fa-clock"></i>
-                    <h3>Delayed Responses</h3>
-                    <p>Leads come in, but responses are delayed or missed while you're on the lot or with another customer.</p>
+                    <h3>Leads Die in Inboxes</h3>
+                    <p>Hot customers message you while you're under a car. By the time you see it, they've bought elsewhere.</p>
                 </div>
                 <div class="problem-card">
                     <i class="fas fa-list-alt"></i>
-                    <h3>Slow Inventory Updates</h3>
-                    <p>Inventory takes too long to list everywhere - your website, Facebook, and other marketplaces.</p>
+                    <h3>Inventory Sits Idle</h3>
+                    <p>New cars take hours to list everywhere. They're not making money while they wait.</p>
                 </div>
                 <div class="problem-card">
                     <i class="fas fa-chart-line"></i>
                     <h3>No Follow-up System</h3>
-                    <p>Sales follow‑up depends on memory, not systems. Hot leads go cold without consistent contact.</p>
+                    <p>Sales depend on memory, not systems. Hot leads go cold because you can't track them all.</p>
                 </div>
                 <div class="problem-card">
                     <i class="fas fa-star"></i>
                     <h3>Uncontrolled Reputation</h3>
-                    <p>Reviews are inconsistent or out of your control. One bad public review can cost multiple sales.</p>
+                    <p>One angry customer can trash your Google rating, scaring away dozens of buyers.</p>
                 </div>
-            </div>
-            <div style="text-align: center; margin-top: 50px; font-style: italic; color: var(--secondary); padding: 25px; background: rgba(255, 107, 53, 0.05); border-radius: var(--border-radius);">
-                <p style="font-size: 1.3rem; font-weight: 600;"><strong>None of this shows up on your lot. It shows up in missed opportunities.</strong></p>
             </div>
         </div>
     </section>
@@ -702,12 +1085,18 @@
     <section id="solution">
         <div class="container">
             <div class="section-title">
-                <h2>The Savvy Dealer Solution</h2>
-                <p>Savvy Dealer System replaces scattered tools and manual steps with one AI‑powered workflow that runs in the background of your dealership.</p>
+                <h2>The Savvy Dealer System</h2>
+                <p>One complete system that automates everything from the moment a car arrives to the moment it drives off your lot.</p>
             </div>
-            <div style="max-width: 900px; margin: 0 auto; background: linear-gradient(135deg, rgba(255, 107, 53, 0.05), rgba(0, 59, 92, 0.05)); padding: 50px; border-radius: var(--border-radius); border-left: 6px solid var(--primary); box-shadow: var(--shadow);">
-                <h3 style="color: var(--secondary); margin-bottom: 20px; font-size: 1.8rem; line-height: 1.3;">From the moment a vehicle is added to the moment it's marked sold, every step is automated, tracked, and visible.</h3>
-                <p style="font-size: 1.4rem; font-weight: 700; color: var(--primary); margin-top: 25px;">You sell cars. We handle the system.</p>
+            <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+                <div style="background: linear-gradient(135deg, rgba(255, 107, 53, 0.05), rgba(0, 59, 92, 0.05)); padding: 70px; border-radius: var(--border-radius-lg); box-shadow: var(--shadow); border: 1px solid rgba(255, 107, 53, 0.1);">
+                    <h3 style="font-size: 2.2rem; color: var(--secondary); margin-bottom: 30px; font-weight: 800; line-height: 1.3;">
+                        From VIN scan to sold car, every step is automated, tracked, and visible.
+                    </h3>
+                    <p style="font-size: 1.8rem; font-weight: 700; color: var(--primary); margin-top: 40px;">
+                        You sell cars. We handle the system that makes it happen.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
@@ -716,114 +1105,116 @@
     <section id="how-it-works" class="how-it-works">
         <div class="container">
             <div class="section-title">
-                <h2>How It Works</h2>
-                <p>Simple, Fast, Proven Workflow</p>
+                <h2>How It Works: The 30-Second Revolution</h2>
+                <p>Four simple steps that transform how you sell cars.</p>
             </div>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-icon">
-                        <i class="fas fa-barcode"></i>
+            
+            <div class="steps-container">
+                <div class="steps-line"></div>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-icon">
+                            <i class="fas fa-barcode"></i>
+                        </div>
+                        <h3>Scan & List</h3>
+                        <p>Scan VIN, snap photos, click submit. Car is live on your site and Facebook in 30 seconds flat.</p>
                     </div>
-                    <h3>Add Inventory in Seconds</h3>
-                    <p>Scan or enter the VIN, set the price, mileage, and color. Your vehicle is instantly published on your Savvy Dealer website and Facebook Marketplace. No delays. No duplicate work.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-icon">
-                        <i class="fas fa-bolt"></i>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Capture & Alert</h3>
+                        <p>When a lead comes in, you get an instant SMS to your phone. Never miss a hot buyer again.</p>
                     </div>
-                    <h3>Capture & Respond Instantly</h3>
-                    <p>When a customer inquires about a vehicle or submits a financing form, the system captures the lead and sends instant SMS notifications to your phone. Speed to lead happens automatically.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-icon">
-                        <i class="fas fa-history"></i>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <h3>Track & Follow-up</h3>
+                        <p>Every interaction is logged automatically. See the full customer journey from first contact to sale.</p>
                     </div>
-                    <h3>Track Every Interaction</h3>
-                    <p>Every step of the sale is logged: forms, text messages, follow-ups, status changes. You can see the full interaction timeline from first contact to final sale. No more guessing what happened.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <div class="step-icon">
-                        <i class="fas fa-flag-checkered"></i>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-icon">
+                            <i class="fas fa-flag-checkered"></i>
+                        </div>
+                        <h3>Sell & Review</h3>
+                        <p>Click "Sold" - car disappears everywhere. Happy buyer automatically gets asked for a 5-star review.</p>
                     </div>
-                    <h3>Sold → Reviews Go Out Automatically</h3>
-                    <p>When you click "Mark Sold", the system sends the customer a review request, routes positive reviews to Google, and sends negative feedback privately to you. Protect your reputation automatically.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Why Choose -->
-    <section class="benefits">
-        <div class="container">
-            <div class="section-title">
-                <h2>Why Dealers Choose Savvy Dealer System</h2>
-            </div>
-            <div class="benefit-list">
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div>
-                        <h3>More Sales Without More Staff</h3>
-                        <p>Automated lead capture and follow-up means you close more deals without hiring additional salespeople.</p>
-                    </div>
+    <section class="benefits    <div class="container">
+        <div class="section-title">
+            <h2>Why Dealers Choose Savvy</h2>
+            <p>This isn't just another tool. It's your complete sales system.</p>
+        </div>
+        <div class="benefit-list">
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="fas fa-rocket"></i>
                 </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-stopwatch"></i>
-                    </div>
-                    <div>
-                        <h3>Faster Response Times</h3>
-                        <p>Instant SMS notifications mean you respond to leads in seconds, not hours or days.</p>
-                    </div>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-clipboard-check"></i>
-                    </div>
-                    <div>
-                        <h3>Clear Accountability</h3>
-                        <p>See the entire customer journey from first contact to sale. Know exactly what's working.</p>
-                    </div>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div>
-                        <h3>Better Reviews With Less Effort</h3>
-                        <p>Automated review requests after every sale build your reputation while you focus on selling.</p>
-                    </div>
+                <div>
+                    <h3>More Sales, Same Staff</h3>
+                    <p>Automated follow-up means you close deals you'd normally lose, without hiring more people.</p>
                 </div>
             </div>
-            <div style="text-align: center; margin-top: 60px; padding: 40px; background-color: white; border-radius: var(--border-radius); box-shadow: var(--shadow); border-top: 5px solid var(--primary);">
-                <h3 style="color: var(--secondary); margin-bottom: 20px; font-size: 1.8rem;">This Is Not Another Tool</h3>
-                <p style="margin-bottom: 20px; font-size: 1.1rem; color: var(--gray);"><strong>Savvy Dealer System is not:</strong> A CRM replacement, a website builder, or a generic SaaS subscription.</p>
-                <p style="font-weight: 700; color: var(--primary); font-size: 1.3rem; line-height: 1.5;"><strong>It is:</strong> A fully implemented lead‑to‑sale system, tailored to how you sell cars, managed so your staff doesn't have to.</p>
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="fas fa-stopwatch"></i>
+                </div>
+                <div>
+                    <h3>Response in Seconds</h3>
+                    <p>Instant SMS alerts mean you respond while the customer is still browsing. Speed wins sales.</p>
+                </div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="fas fa-clipboard-check"></i>
+                </div>
+                <div>
+                    <h3>Complete Visibility</h3>
+                    <p>See every customer interaction, follow-up, and status change. Know exactly what's working.</p>
+                </div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div>
+                    <h3>Protected Reputation</h3>
+                    <p>Automated review requests build your Google rating while negative feedback stays private.</p>
+                </div>
             </div>
         </div>
-    </section>
+        <div style="max-width: 800px; margin: 80px auto 0; background: rgba(255, 255, 255, 0.1); padding: 50px; border-radius: var(--border-radius-lg); text-align: center; border: 1px solid rgba(255, 255, 255, 0.2);">
+            <h3 style="font-size: 2rem; margin-bottom: 20px; font-weight: 700;">This Isn't Software. It's Your System.</h3>
+            <p style="font-size: 1.2rem; margin-bottom: 25px; opacity: 0.9;"><strong>Not:</strong> A CRM, website builder, or another subscription.</p>
+            <p style="font-size: 1.4rem; font-weight: 700; color: var(--primary-light);"><strong>It is:</strong> Your complete lead-to-sale system, implemented and managed for you.</p>
+        </div>
+    </div>
+</section>
 
-    <!-- Live Demo with Formspree Form -->
-    <section id="demo" class="demo">
-        <div class="container">
-            <div class="section-title">
-                <h2 style="color: white;">Live, Working Demo</h2>
-                <p style="color: rgba(255,255,255,0.95); font-size: 1.3rem;">This system is already live in a real dealership environment.</p>
+<!-- Demo Section -->
+<section id="demo" class="demo">
+    <div class="container">
+        <div class="demo-card">
+            <div class="demo-header">
+                <h2>Live Demo: See It Working</h2>
+                <p>This system is live in dealerships right now. See exactly how it works.</p>
+                <p style="margin-top: 20px; font-size: 1.2rem;"><i class="fas fa-check-circle" style="margin-right: 10px;"></i> No slides. No theory. See the actual system.</p>
             </div>
-            <p style="font-size: 1.2rem;">We'll walk you through: Inventory publishing, lead capture, SMS alerts, interaction tracking, and review automation.</p>
-            <p style="font-weight: 700; margin-top: 25px; font-size: 1.3rem;">No slides. No theory. See the actual system working.</p>
-            
-            <div class="form-container">
-                <h3 style="color: var(--secondary); text-align: center; margin-bottom: 40px; font-size: 1.8rem;">Schedule Your Live Demo</h3>
+            <div class="demo-form">
+                <h3 style="color: var(--secondary); text-align: center; margin-bottom: 40px; font-size: 1.8rem;">Schedule Your Demo</h3>
                 
-                <!-- Formspree Form - Production Ready -->
+                <!-- Formspree Form -->
                 <form id="demoForm" action="https://formspree.io/f/xrbnvknw" method="POST">
-                    <!-- Success/Error Messages -->
                     <div id="form-message" class="form-message"></div>
                     
                     <div class="form-group">
@@ -857,220 +1248,345 @@
                         </select>
                     </div>
                     
-                    <!-- Hidden Fields for Better Formspree Tracking -->
+                    <!-- Hidden Fields for Formspree -->
                     <input type="hidden" name="_subject" value="New Demo Request - Savvy Dealer System">
                     <input type="hidden" name="_replyto" value="sales@savvyordersystems.com">
                     <input type="hidden" name="_cc" value="sales@savvyordersystems.com">
                     <input type="text" name="_gotcha" style="display:none;">
                     
                     <div class="form-group">
-                        <button type="submit" id="submit-btn" class="btn" style="width: 100%; padding: 20px; font-size: 1.2rem;">
-                            Book My Live Demo
+                        <button type="submit" id="submit-btn" class="form-submit">
+                            <i class="fas fa-calendar-check"></i> Book My Live Demo
                         </button>
                     </div>
                     <p style="text-align: center; color: var(--gray); font-size: 1rem; margin-top: 25px;">
-                        <strong>Sending you to book your demo now...</strong>
+                        <strong>We'll redirect you to schedule your demo immediately.</strong>
                     </p>
                 </form>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Who It's For & Pricing -->
-    <section>
-        <div class="container">
-            <div class="section-title">
-                <h2>Who This Is For</h2>
-                <p style="font-size: 1.2rem;">Savvy Dealer System is built for independent dealerships, small to mid‑size auto dealers, and teams that want more control, not more complexity.</p>
+<!-- Pricing Section -->
+<section id="pricing" class="pricing">
+    <div class="container">
+        <div class="section-title">
+            <h2>Simple, Savvy Investment</h2>
+            <p>One complete system. One clear price. Get started for half the cost.</p>
+        </div>
+        
+        <div class="pricing-card">
+            <div class="pricing-badge">LAUNCH OFFER</div>
+            
+            <div class="pricing-header">
+                <h3>Half Price for 6 Months</h3>
+                <p>Complete system implementation and management</p>
             </div>
-            <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-                <div style="background: linear-gradient(135deg, rgba(255, 107, 53, 0.05), rgba(0, 59, 92, 0.05)); padding: 50px; border-radius: var(--border-radius); margin-bottom: 50px; box-shadow: var(--shadow);">
-                    <h3 style="color: var(--secondary); margin-bottom: 30px; font-size: 1.8rem;">Implementation & Pricing (Simple)</h3>
-                    <div style="display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; margin-top: 40px;">
-                        <div style="text-align: center;">
-                            <div style="font-size: 3.5rem; color: var(--primary); font-weight: 800; line-height: 1;">$1,497</div>
-                            <p style="font-weight: 700; color: var(--secondary); margin-top: 15px; font-size: 1.2rem;">One-time setup & customization</p>
-                        </div>
-                        <div style="text-align: center;">
-                            <div style="font-size: 3.5rem; color: var(--primary); font-weight: 800; line-height: 1;">$597</div>
-                            <p style="font-weight: 700; color: var(--secondary); margin-top: 15px; font-size: 1.2rem;">Flat monthly management fee</p>
-                        </div>
-                    </div>
-                    <p style="margin-top: 40px; color: var(--gray); font-size: 1.1rem;">No per‑user pricing. No long learning curve. We'll discuss exact customization during your demo.</p>
+            
+            <div class="pricing-numbers">
+                <div class="pricing-item">
+                    <div class="price">$500</div>
+                    <div class="price-label">One-Time Setup</div>
+                    <div class="price-note">We install & train. Live in days.</div>
                 </div>
-                <p style="font-style: italic; color: var(--secondary); font-size: 1.3rem; font-weight: 600; padding: 25px; background: rgba(255, 107, 53, 0.05); border-radius: var(--border-radius);">
-                    <strong>If you're tired of juggling tools and missing opportunities, this system was built for you.</strong>
+                <div class="pricing-item">
+                    <div class="price">$297<span style="font-size: 2rem;">/mo</span></div>
+                    <div class="price-label">Monthly System</div>
+                    <div class="price-note"><strong>Half price</strong> for 6 months</div>
+                </div>
+            </div>
+            
+            <div class="pricing-highlight">
+                <p>Your First 6 Months Total:</p>
+                <div class="savings">$500 + ($297 × 6) = $2,282</div>
+                <p style="margin-top: 15px; font-size: 1.2rem;">You save $1,800 vs. standard pricing of $597/month</p>
+            </div>
+            
+            <p style="color: var(--gray); font-size: 1.2rem; margin: 40px 0;">
+                <strong>No per-user fees.</strong> One complete system for your entire dealership. Cancel anytime.
+            </p>
+            
+            <a href="#demo" class="btn-primary" style="width: 100%; text-align: center; justify-content: center;">
+                <i class="fas fa-play-circle"></i> See If You Qualify
+            </a>
+        </div>
+        
+        <div style="text-align: center; margin-top: 60px; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <div style="background: linear-gradient(135deg, rgba(255, 107, 53, 0.05), rgba(0, 59, 92, 0.05)); padding: 40px; border-radius: var(--border-radius); border-left: 4px solid var(--primary);">
+                <h3 style="color: var(--secondary); margin-bottom: 20px; font-size: 1.6rem;">The System Pays for Itself</h3>
+                <p style="font-size: 1.3rem; color: var(--secondary); font-weight: 600;">
+                    One extra sale covers your entire 6-month investment. Stop losing leads. Start closing deals.
                 </p>
             </div>
         </div>
-    </section>
-
-    <!-- Sticky CTA -->
-    <div class="sticky-cta">
-        <a href="#demo" class="btn">Book Demo</a>
     </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Savvy Dealer System</h3>
-                    <p style="font-size: 1.1rem; opacity: 0.9;">AI‑Powered Lead‑to‑Sale Automation for Independent Dealerships.</p>
-                    <p style="margin-top: 25px; opacity: 0.8; font-size: 1rem;">We don't sell software. We implement and manage the system that sells your cars.</p>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <div class="footer-links">
-                        <a href="#problem">The Problem</a>
-                        <a href="#solution">The Solution</a>
-                        <a href="#how-it-works">How It Works</a>
-                        <a href="#demo">Live Demo</a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact</h3>
-                    <div class="footer-links">
-                        <a href="#demo"><i class="fas fa-calendar-alt" style="margin-right: 10px;"></i> Book a Demo</a>
-                        <a href="mailto:sales@savvyordersystems.com"><i class="fas fa-envelope" style="margin-right: 10px;"></i> sales@savvyordersystems.com</a>
-                        <a href="tel:+13024094992"><i class="fas fa-phone" style="margin-right: 10px;"></i> (302) 409-4992</a>
-                    </div>
+<!-- Sticky CTA -->
+<div class="sticky-cta" id="stickyCta">
+    <a href="#demo" class="btn">
+        <i class="fas fa-calendar-alt"></i> Book Demo
+    </a>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Savvy Dealer System</h3>
+                <p>AI‑Powered Lead‑to‑Sale Automation for Independent Dealerships.</p>
+                <p style="margin-top: 20px; font-size: 1.1rem;">
+                    We don't sell software. We implement and manage the system that sells your cars.
+                </p>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <div class="footer-links">
+                    <a href="#problem">The Problem</a>
+                    <a href="#solution">The Solution</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#demo">Live Demo</a>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; <span id="currentYear"></span> Savvy Dealer System. All rights reserved.</p>
-                <p style="margin-top: 15px; font-size: 1rem;">Built by someone who's sold cars and understands your pain.</p>
+            
+            <div class="footer-column">
+                <h4>Contact Us</h4>
+                <div class="footer-links">
+                    <a href="#demo">
+                        <i class="fas fa-calendar-alt" style="margin-right: 10px;"></i> Book a Demo
+                    </a>
+                    <a href="mailto:sales@savvyordersystems.com">
+                        <i class="fas fa-envelope" style="margin-right: 10px;"></i> sales@savvyordersystems.com
+                    </a>
+                    <a href="tel:+13024094992">
+                        <i class="fas fa-phone" style="margin-right: 10px;"></i> (302) 409-4992
+                    </a>
+                </div>
             </div>
         </div>
-    </footer>
+        
+        <div class="copyright">
+            <p>&copy; <span id="currentYear"></span> Savvy Dealer System. All rights reserved.</p>
+            <p style="margin-top: 15px; font-size: 1rem;">
+                Built by someone who's sold cars and understands your pain.
+            </p>
+        </div>
+    </div>
+</footer>
 
-    <!-- JavaScript with Formspree Integration & CALENDLY REDIRECT -->
-    <script>
-        // Mobile navigation toggle
-        document.getElementById('mobileToggle').addEventListener('click', function() {
-            document.getElementById('navLinks').classList.toggle('active');
-        });
-        
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('navLinks').classList.remove('active');
-            });
-        });
-        
-        // Formspree Form Submission WITH CALENDLY REDIRECT
-        document.getElementById('demoForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
+<!-- JavaScript -->
+<script>
+    // ===== TYPING ANIMATION =====
+    const typingTextElement = document.getElementById('typing-text');
+    const phrases = [
+        'captures leads instantly.',
+        'follows up automatically.',
+        'tracks every interaction.',
+        'turns inquiries into sales.'
+    ];
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 80;
+    let pauseBetween = 1500;
+
+    function typeText() {
+        const currentPhrase = phrases[phraseIndex];
+
+        if (isDeleting) {
+            typingTextElement.textContent = currentPhrase.substring(0, charIndex - 1);
+            charIndex--;
+            typingSpeed = 50;
+        } else {
+            typingTextElement.textContent = currentPhrase.substring(0, charIndex + 1);
+            charIndex++;
+            typingSpeed = 80;
+        }
+
+        if (!isDeleting && charIndex === currentPhrase.length) {
+            isDeleting = true;
+            typingSpeed = pauseBetween;
+            setTimeout(typeText, typingSpeed);
+            return;
+        }
+
+        if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            typingSpeed = 500;
+        }
+
+        setTimeout(typeText, typingSpeed);
+    }
+
+    // ===== MOBILE NAVIGATION =====
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navLinks = document.querySelector('.nav-links');
+    const navCta = document.querySelector('.nav-cta');
+
+    if (mobileToggle) {
+        mobileToggle.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navCta.style.display = navCta.style.display === 'block' ? 'none' : 'block';
             
-            const form = this;
-            const submitBtn = document.getElementById('submit-btn');
-            const formMessage = document.getElementById('form-message');
-            const originalText = submitBtn.textContent;
-            
-            // Clear previous messages
-            formMessage.className = 'form-message';
-            formMessage.textContent = '';
-            
-            // Validate form
-            let isValid = true;
-            const requiredFields = form.querySelectorAll('input[required], select[required]');
-            
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    isValid = false;
-                    field.style.borderColor = '#dc3545';
-                } else {
-                    field.style.borderColor = '#e1e5e9';
-                }
-            });
-            
-            if (!isValid) {
-                formMessage.className = 'form-message error';
-                formMessage.textContent = 'Please fill in all required fields.';
-                formMessage.style.display = 'block';
-                return;
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.width = '100%';
+                navLinks.style.background = 'white';
+                navLinks.style.padding = '30px';
+                navLinks.style.boxShadow = '0 20px 40px rgba(0, 59, 92, 0.1)';
+                navCta.style.position = 'absolute';
+                navCta.style.top = 'calc(100% + 200px)';
+                navCta.style.left = '50%';
+                navCta.style.transform = 'translateX(-50%)';
+            } else {
+                navLinks.style = '';
+                navCta.style = '';
             }
+        });
+
+        // Close mobile menu when clicking links
+        document.querySelectorAll('.nav-links a, .nav-cta').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.style.display = 'none';
+                navCta.style.display = 'none';
+            });
+        });
+    }
+
+    // ===== FORM SUBMISSION =====
+    document.getElementById('demoForm')?.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const form = this;
+        const submitBtn = document.getElementById('submit-btn');
+        const formMessage = document.getElementById('form-message');
+        const originalText = submitBtn.textContent;
+
+        formMessage.className = 'form-message';
+        formMessage.textContent = '';
+
+        // Validate form
+        let isValid = true;
+        const requiredFields = form.querySelectorAll('input[required], select[required]');
+        requiredFields.forEach(field => {
+            if (!field.value.trim()) {
+                isValid = false;
+                field.style.borderColor = '#dc3545';
+            } else {
+                field.style.borderColor = '#e1e5e9';
+            }
+        });
+
+        if (!isValid) {
+            formMessage.className = 'form-message error';
+            formMessage.textContent = 'Please fill in all required fields.';
+            formMessage.style.display = 'block';
+            return;
+        }
+
+        // Disable button
+        submitBtn.textContent = 'Sending Request...';
+        submitBtn.disabled = true;
+
+        try {
+            const formData = new FormData(form);
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                // Instant redirect to Calendly
+                window.location.href = 'https://calendly.com/savvyordersystems/dealership-demo';
+            } else {
+                throw new Error('Form submission failed');
+            }
+        } catch (error) {
+            formMessage.className = 'form-message error';
+            formMessage.textContent = 'There was an error. Please try again or contact us directly.';
+            formMessage.style.display = 'block';
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+            setTimeout(() => { formMessage.style.display = 'none'; }, 5000);
+        }
+    });
+
+    // ===== UTILITY FUNCTIONS =====
+    // Set current year
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // Show sticky CTA when scrolling
+    window.addEventListener('scroll', function() {
+        const stickyCta = document.getElementById('stickyCta');
+        if (window.scrollY > 500) {
+            stickyCta.classList.add('show');
+        } else {
+            stickyCta.classList.remove('show');
+        }
+    });
+
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            if (this.getAttribute('href') === '#') return;
             
-            // Disable button and show loading state
-            submitBtn.textContent = 'Sending Request...';
-            submitBtn.disabled = true;
-            submitBtn.classList.add('form-submitting');
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
             
-            try {
-                // Send to Formspree
-                const formData = new FormData(form);
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
                 });
                 
-                if (response.ok) {
-                    // SUCCESS: Redirect to Calendly IMMEDIATELY
-                    window.location.href = 'https://calendly.com/savvyordersystems/dealership-demo';
-                    
-                } else {
-                    // Formspree error
-                    throw new Error('Form submission failed');
+                // Close mobile menu if open
+                if (window.innerWidth <= 768) {
+                    navLinks.style.display = 'none';
+                    navCta.style.display = 'none';
                 }
-                
-            } catch (error) {
-                // Network or other error - DON'T redirect, show error
-                formMessage.className = 'form-message error';
-                formMessage.textContent = 'There was an error submitting your request. Please try again or contact us directly.';
-                formMessage.style.display = 'block';
-                
-                // Reset button
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-                submitBtn.classList.remove('form-submitting');
-                
-                // Hide error after 5 seconds
-                setTimeout(() => {
-                    formMessage.style.display = 'none';
-                }, 5000);
             }
         });
-        
-        // Set current year in footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-        
-        // Show sticky CTA when scrolling
-        window.addEventListener('scroll', function() {
-            const stickyCta = document.querySelector('.sticky-cta');
-            if (window.scrollY > 800) {
-                stickyCta.style.display = 'block';
-            } else {
-                stickyCta.style.display = 'none';
-            }
+    });
+
+    // Clear validation errors
+    document.querySelectorAll('.form-control').forEach(input => {
+        input.addEventListener('input', function() {
+            this.style.borderColor = '#e1e5e9';
         });
+    });
+
+    // Start animations when page loads
+    window.addEventListener('DOMContentLoaded', () => {
+        setTimeout(typeText, 1000);
         
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // Clear validation errors on input
-        document.querySelectorAll('.form-control').forEach(input => {
-            input.addEventListener('input', function() {
-                this.style.borderColor = '#e1e5e9';
-            });
-        });
-    </script>
+        // Initialize mobile menu
+        if (window.innerWidth <= 768) {
+            navLinks.style.display = 'none';
+            navCta.style.display = 'none';
+        }
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            navLinks.style.display = '';
+            navCta.style.display = '';
+            navLinks.style = '';
+            navCta.style = '';
+        } else {
+            navLinks.style.display = 'none';
+            navCta.style.display = 'none';
+        }
+    });
+</script>
 </body>
 </html>
